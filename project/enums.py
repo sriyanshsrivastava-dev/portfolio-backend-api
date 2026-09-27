@@ -13,3 +13,21 @@ class ProjectType(models.TextChoices):
     ACADEMIC = "ACADEMIC"
     OPEN_SOURCE = "OPEN_SOURCE"
     CLIENT = "CLIENT"
+
+class MediaType(models.TextChoices):
+    VIDEO = "VIDEO"
+    IMAGE = "IMAGE"
+    GIF = "GIF"
+    PDF = "PDF"
+    OTHER = "OTHER"
+
+class TechnologyType(models.TextChoices):
+    LANGUAGE = "LANGUAGE"
+    FRAMEWORK = "FRAMEWORK"
+    LIBRARY = "LIBRARY"
+    DATABASE = "DATABASE"
+    PLATFORM = "PLATFORM"
+    RUNTIME = "RUNTIME"
+    OTHER = "OTHER"
+    TOOLS = "TOOLS"
+
