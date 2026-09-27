@@ -1,5 +1,7 @@
 from django.db import models
 from .enums import Status,ProjectType, MediaType, TechnologyType
+from .utils import generate_unique_slug
+
 
 # Create your models here.
 class Project(models.Model):
@@ -28,6 +30,12 @@ class Project(models.Model):
     media = models.ManyToManyField("Media", related_name="projects",blank=True)
     technologies = models.ManyToManyField("Technology", related_name="projects",blank=True)
     skills = models.ManyToManyField("Skill", related_name="projects",blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = generate_unique_slug(self, "title")
+
+        super().save(*args, **kwargs)
 
 
 class Media(models.Model):

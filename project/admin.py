@@ -6,10 +6,11 @@ from project.models import Project, Technology, Skill, Media
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('id','title', 'project_type')
+    list_display = ('id','title','slug','tagline','start_date','end_date', 'project_type','created_at')
     search_fields = ('title',)
     list_display_links = ('id','title')
-    list_filter = ('created_at',)
+    list_filter = ('created_at','project_type','status','is_published','featured')
+    exclude = ['slug','created_at','modified_at']
 
 
 
