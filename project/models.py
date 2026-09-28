@@ -48,10 +48,15 @@ class Media(models.Model):
     alt_text = models.CharField(max_length=300,null=True,blank=True)
     caption = models.TextField(null=True,blank=True)
 
+    def __str__(self):
+        return f"{self.title} - {self.type}"
+
 
 class Skill(models.Model):
     name = models.CharField(max_length=200, db_index=True, unique=True)
     description = models.TextField(null=True,blank=True)
+    def __str__(self):
+        return f"{self.name}-{self.description}"
 
 
 class Technology(models.Model):

@@ -125,8 +125,8 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='project',
-            name='media',
-            field=models.ManyToManyField(related_name='projects', to='project.media'),
+            name='media_tools',
+            field=models.ManyToManyField(related_name='projects', to='project.media_tools'),
         ),
         migrations.AddField(
             model_name='project',

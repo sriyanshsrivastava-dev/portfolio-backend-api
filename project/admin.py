@@ -1,4 +1,8 @@
 from django.contrib import admin
+from infrastructure.media_tools.filename import HexFileNameGenerator
+from infrastructure.media_tools.processor import ImageProcessor
+from infrastructure.media_tools.uploader import LocalFileUploader
+from project.forms import MediaAdminForm
 from project.models import Project, Technology, Skill, Media
 
 
@@ -38,3 +42,21 @@ class MediaAdmin(admin.ModelAdmin):
     search_fields = ('title',)
     list_display_links = ('id','title')
     list_filter = ('title','type',)
+    form = MediaAdminForm
+    exclude = ["url"]
+
+    def save_model(self, request, obj, form, change):
+        uploaded_file = form.cleaned_data.get('upload')
+
+        if uploaded_file:
+            file_name = HexFileNameGenerator.generate(extension="webp")
+            processed_image = ImageProcessor.resize(uploaded_file,(1920,1080))
+            file_to_upload = processed_image or uploaded_file
+            obj.url = LocalFileUploader.upload(
+                file=file_to_upload,
+                file_name=file_name
+            )
+
+        super().save_model(request, obj, form, change)
+
+

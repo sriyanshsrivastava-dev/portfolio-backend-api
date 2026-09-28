@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterModelOptions(
-            name='media',
+            name='media_tools',
             options={'verbose_name': 'Media', 'verbose_name_plural': 'Media'},
         ),
         migrations.AlterModelOptions(
